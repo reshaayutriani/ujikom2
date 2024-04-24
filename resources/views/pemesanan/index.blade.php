@@ -60,34 +60,27 @@
                                             <h3>{{ $j->nama_jenis }}</h3>
                                             <ul class="menu-item" style="cursor: pointer;">
                                                 @foreach ($j->menu as $menu)
-                                                <li data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}" data-image="{{ $menu->image }}">
-                                                    <img width="100px" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
-                                                    {{-- <div>
-                                                                Nama: {{ $menu->nama_menu }}
-                                                    <br>
-                                                    Jumlah: {{ $menu->stok->jumlah }}
-                                </div> --}}
-                                {{-- <div>Nama: {{ $menu->nama_menu }}
-                                <br>Jumlah: @if($menu->stok)
-                                {{ $menu->stok->jumlah }}
-                                @endif
-                            </div> --}}
+                                                <li data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}">
+                                                    <img width="50px" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
 
-                            <div style="font-family: calibri;">
-                                Nama : {{ $menu->nama_menu }} <br>
-                                Stok : {{ $menu->stok->first()->jumlah }} <br>
-                                Deskripsi : {{ $menu->deskripsi }}
+                                                    <div>
+                                                        Nama: {{ $menu->nama_menu }}<br />
+
+                                                        Deskripsi: {{ $menu->deskripsi }}<br />
+                                                    </div>
+
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+
+                                    </ul>
+                                </div>
                             </div>
-                            </li>
-                            @endforeach
-                            </ul>
-                            </li>
-                            @endforeach
-                            </ul>
                         </div>
-                    </div>
-                </div>
-                {{-- <style>
+                        {{-- <style>
                                 .menu-container li h3 {
                                     text-transform: uppercase;
                                     font-weight: bold;
@@ -98,340 +91,343 @@
                                 }
                             </style> --}}
 
-                <style>
-                    .ordered-item {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        padding: 10px;
-                        margin-bottom: 10px;
-                        background-color: #f9f9f9;
-                        border-radius: 5px;
-                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                    }
+                        <style>
+                            .ordered-item {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                background-color: #f9f9f9;
+                                border-radius: 5px;
+                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            }
 
-                    .ordered-item-container {
-                        display: flex;
-                        align-items: center;
-                    }
+                            .ordered-item-container {
+                                display: flex;
+                                align-items: center;
+                            }
 
-                    .ordered-item-image {
-                        width: 50px;
-                        margin-right: 10px;
-                    }
+                            .ordered-item-image {
+                                width: 50px;
+                                margin-right: 10px;
+                            }
 
-                    .ordered-item-details {
-                        flex: 1;
-                    }
+                            .ordered-item-details {
+                                flex: 1;
+                            }
 
-                    .ordered-item-name {
-                        margin: 0;
-                        font-size: 16px;
-                        font-weight: bold;
-                    }
+                            .ordered-item-name {
+                                margin: 0;
+                                font-size: 16px;
+                                font-weight: bold;
+                            }
 
-                    .ordered-item-price {
-                        margin: 5px 0;
-                        font-size: 14px;
-                        color: #666;
-                    }
+                            .ordered-item-price {
+                                margin: 5px 0;
+                                font-size: 14px;
+                                color: #666;
+                            }
 
-                    .ordered-item-actions {
-                        display: flex;
-                        align-items: center;
-                    }
+                            .ordered-item-actions {
+                                display: flex;
+                                align-items: center;
+                            }
 
-                    .qty-item {
-                        width: 40px;
-                        text-align: center;
-                        margin: 0 5px;
-                        border: 1px solid #ccc;
-                        border-radius: 3px;
-                    }
+                            .qty-item {
+                                width: 40px;
+                                text-align: center;
+                                margin: 0 5px;
+                                border: 1px solid #ccc;
+                                border-radius: 3px;
+                            }
 
-                    .subtotal {
-                        margin: 0;
-                        font-size: 18px;
-                        font-weight: bold;
-                        color: #007bff;
-                    }
+                            .subtotal {
+                                margin: 0;
+                                font-size: 18px;
+                                font-weight: bold;
+                                color: #007bff;
+                            }
 
-                    .remove-item,
-                    .btn-dec,
-                    .btn-inc {
-                        background-color: #dc3545;
-                        color: #fff;
-                        border: none;
-                        border-radius: 3px;
-                        cursor: pointer;
-                        padding: 5px 10px;
-                        margin-left: 5px;
-                    }
+                            .remove-item,
+                            .btn-dec,
+                            .btn-inc {
+                                background-color: #dc3545;
+                                color: #fff;
+                                border: none;
+                                border-radius: 3px;
+                                cursor: pointer;
+                                padding: 5px 10px;
+                                margin-left: 5px;
+                            }
 
-                    .remove-item:hover,
-                    .btn-dec:hover,
-                    .btn-inc:hover {
-                        background-color: #c82333;
-                    }
+                            .remove-item:hover,
+                            .btn-dec:hover,
+                            .btn-inc:hover {
+                                background-color: #c82333;
+                            }
 
-                    .pagetitle {
-                        text-align: center;
-                        /* Pusatkan teks */
-                        margin-bottom: 20px;
-                        /* Berikan ruang bawah */
-                    }
+                            .pagetitle {
+                                text-align: center;
+                                /* Pusatkan teks */
+                                margin-bottom: 20px;
+                                /* Berikan ruang bawah */
+                            }
 
-                    .pagetitle h1 {
-                        font-size: 36px;
-                        /* Ukuran font yang lebih besar */
-                        color: #333;
-                        /* Warna teks */
-                        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-                        /* Bayangan teks */
-                    }
+                            .pagetitle h1 {
+                                font-size: 36px;
+                                /* Ukuran font yang lebih besar */
+                                color: #333;
+                                /* Warna teks */
+                                text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+                                /* Bayangan teks */
+                            }
 
-                    /* Style untuk item menu */
-                    .menu-item li {
-                        cursor: pointer;
-                        /* text-align: center; */
-                        margin-bottom: 10px;
-                        padding: 10px;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        transition: all 0.3s ease;
-                    }
+                            /* Style untuk item menu */
+                            .menu-item li {
+                                cursor: pointer;
+                                margin-bottom: 10px;
+                                padding: 10px;
+                                border: 1px solid #ccc;
+                                border-radius: 5px;
+                                transition: all 0.3s ease;
+                            }
 
-                    .menu-item li:hover {
-                        background-color: #f0f0f0;
-                    }
+                            .menu-item li:hover {
+                                background-color: #f0f0f0;
+                            }
 
-                    /* Style untuk tombol hapus dan tombol kuantitas */
-                    .btn-dec,
-                    .btn-inc {
-                        background-color: #2915e3;
-                        color: #fff;
-                        border: none;
-                        border-radius: 3px;
-                        cursor: pointer;
-                        padding: 5px 10px;
-                        margin-left: 5px;
-                        transition: all 0.3s ease;
-                    }
+                            /* Style untuk tombol hapus dan tombol kuantitas */
+                            .btn-dec,
+                            .btn-inc {
+                                background-color: #1c5c99;
+                                color: #fff;
+                                border: none;
+                                border-radius: 3px;
+                                cursor: pointer;
+                                padding: 5px 10px;
+                                margin-left: 5px;
+                                transition: all 0.3s ease;
+                            }
 
-                    .remove-item {
-                        background-color: #343bc2;
-                        color: #fff;
-                        border: none;
-                        border-radius: 3px;
-                        cursor: pointer;
-                        padding: 5px 10px;
-                        margin-left: 5px;
-                        transition: all 0.3s ease;
-                    }
+                            .remove-item {
+                                background-color: #6621b0;
+                                color: #fff;
+                                border: none;
+                                border-radius: 3px;
+                                cursor: pointer;
+                                padding: 5px 10px;
+                                margin-left: 5px;
+                                transition: all 0.3s ease;
+                            }
 
-                    .btn-dec:hover,
-                    .btn-inc:hover {
-                        background-color: #30df0d;
-                    }
+                            .btn-dec:hover,
+                            .btn-inc:hover {
+                                background-color: #c82333;
+                            }
 
-                    /* Style untuk subtotal */
-                    .subtotal {
-                        font-size: 16px;
-                        font-weight: bold;
-                        color: #7291b3;
-                        margin-left: 10px;
-                    }
+                            /* Style untuk subtotal */
+                            .subtotal {
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #007bff;
+                                margin-left: 10px;
+                            }
 
-                    /* Style untuk input kuantitas */
-                    .qty-item {
-                        width: 50px;
-                        text-align: center;
-                        margin: 0 5px;
-                    }
+                            /* Style untuk input kuantitas */
+                            .qty-item {
+                                width: 50px;
+                                text-align: center;
+                                margin: 0 5px;
+                            }
 
-                    /* Style untuk total */
-                    #total {
-                        font-size: 18px;
-                        font-weight: bold;
-                        color: #28a745;
-                        margin-top: 10px;
-                    }
+                            /* Style untuk total */
+                            #total {
+                                font-size: 18px;
+                                font-weight: bold;
+                                color: #28a745;
+                                margin-top: 10px;
+                            }
 
-                    .main {
-                        display: flex;
-                        gap: 2rem;
-                    }
-
-
-
-                    .c {
-                        width: 700px;
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                    .container {
-                        /* border: 2px solid pink; */
-                        border-radius: 10px;
-                        /* Menambahkan sedikit efek rounded pada border */
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        /* Menambahkan bayangan */
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                        gap: 30px;
-                        /* padding: 20px; */
-                        transition: box-shadow 0.3s;
-                        /* Efek transisi untuk bayangan */
-                    }
-
-                    .container:hover {
-                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                        /* Meningkatkan bayangan saat hover */
-                    }
+                            .main {
+                                display: flex;
+                                gap: 2rem;
+                            }
 
 
 
-                    .item-content {
-                        width: 400px;
-                    }
+                            .c {
+                                width: 700px;
+                                display: flex;
+                                flex-direction: column;
+                            }
 
-                    .menu-container {
-                        padding: 0px;
-                        list-style-type: none;
-                    }
+                            .container {
+                                border: 2px solid rgb(255, 255, 255);
+                                border-radius: 10px;
+                                /* Menambahkan sedikit efek rounded pada border */
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                /* Menambahkan bayangan */
+                                display: grid;
+                                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                                gap: 30px;
 
-                    .menu-container li h3 {
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        font-size: 20px;
-                        /* Menyesuaikan ukuran font */
-                        background-color: aliceblue;
-                        padding: 10px 20px;
-                        /* Menyesuaikan padding */
-                        margin: 5px 0;
-                        /* Menambahkan margin atas dan bawah */
-                        border-radius: 5px;
-                        /* Memberikan sedikit efek rounded */
-                        transition: background-color 0.3s;
-                        /* Efek transisi ketika hover */
-                    }
+                                transition: box-shadow 0.3s;
+                                /* Efek transisi untuk bayangan */
+                            }
 
-                    .menu-container li h3:hover {
-                        background-color: lightblue;
-                        /* Mengubah warna latar belakang saat hover */
-                    }
+                            .container:hover {
+                                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                                /* Meningkatkan bayangan saat hover */
+                            }
 
 
-                    .menu-item {
-                        list-style-type: none;
-                        display: flex;
-                        gap: 1em;
-                    }
 
-                    .menu-item li {
-                        display: flex;
-                        flex-direction: column;
-                        padding: 10px 20px;
+                            .item-content {
+                                width: 400px;
+                            }
 
-                    }
+                            .menu-container {
+                                padding: 0px;
+                                list-style-type: none;
+                            }
 
-                    .item.content {
-                        text-align: center;
-                        /* Pusatkan konten */
-                        margin-top: 72px;
-                    }
+                            .menu-container li h3 {
+                                text-transform: uppercase;
 
-                    .card {
-                        width: 400px;
-                        margin: auto;
-                        background-color: #f9f9f9;
-                        /* Warna latar belakang */
-                        border-radius: 10px;
-                        /* Efek rounded pada card */
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        /* Bayangan */
-                        transition: box-shadow 0.3s;
-                        /* Efek transisi saat hover */
-                    }
+                                font-weight: bold;
+                                font-size: 20px;
+                                height: 35px;
+                                /* Menyesuaikan ukuran font */
+                                background-color: aliceblue;
+                                padding: 10px 20px;
+                                /* Menyesuaikan padding */
+                                margin: 7px 0;
+                                /* Menambahkan margin atas dan bawah */
+                                border-radius: 5px;
+                                /* Memberikan sedikit efek rounded */
+                                transition: background-color 0.3s;
+                                /* Efek transisi ketika hover */
+                            }
 
-                    .card:hover {
-                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-                        /* Meningkatkan bayangan saat hover */
-                    }
-
-                    .card-body {
-                        padding: 20px;
-                    }
-
-                    .card-title {
-                        font-size: 24px;
-                        /* Ukuran font yang lebih besar */
-                        color: #333;
-                        /* Warna teks */
-                        margin-bottom: 15px;
-                        /* Ruang bawah */
-                    }
-
-                    .ordered-list {
-                        list-style: none;
-                        /* Menghapus bullet points */
-                        padding: 0;
-                    }
-
-                    .card-text {
-                        font-size: 18px;
-                    }
-
-                    .btn-bayar {
-                        background-color: #007bff;
-                        /* Warna latar belakang tombol */
-                        color: #fff;
-                        /* Warna teks tombol */
-                        border: none;
-                        border-radius: 5px;
-                        padding: 10px 20px;
-                        cursor: pointer;
-                        display: inline-block;
-                        /* Mengatur tata letak tombol */
-                        /* Anda dapat menyesuaikan properti CSS lainnya sesuai kebutuhan */
-                    }
+                            .menu-container li h3:hover {
+                                background-color: lightblue;
+                                /* Mengubah warna latar belakang saat hover */
+                            }
 
 
-                    .btn-bayar:hover {
-                        background-color: #0056b3;
-                        /* Warna latar belakang tombol saat hover */
-                    }
-                </style>
+                            .menu-item {
+                                list-style-type: none;
+                                display: flex;
+                                gap: 1em;
+                            }
 
-                <div class="col-md-5">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>Payment</h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <!-- <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Tanggal</label>
-                                            <div class="col-sm-8">
-                                                <input id="birthday" class="form-control" placeholder="dd-mm-yyyy" type="date">
-                                            </div>
-                                        </div> -->
+                            .menu-item li {
+                                display: flex;
+                                flex-direction: column;
+                                padding: 10px 20px;
 
-                            <ul class="ordered-list">
+                            }
 
-                            </ul>
-                            Total Bayar : <h2 id="total"> 0</h2>
+                            .item.content {
+                                text-align: center;
+                                /* Pusatkan konten */
+                                margin-top: 72px;
+                            }
 
-                            <!-- <div class="form-group row">
-                                            <label for="Pelanggan" class="col-sm-4 col-form-label">Pelanggan</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="nama" value="" name="nama">
-                                            </div>
-                                        </div> -->
-                            <br />
-                            <div class="form-group row">
-                                <div class="col-sm-12 text-center">
-                                    <button id="btn-bayar" type="submit" class="col-sm-12 btn btn-primary">Bayar</button>
+                            .card {
+                                width: 400px;
+                                margin: auto;
+                                background-color: #f9f9f9;
+                                /* Warna latar belakang */
+                                border-radius: 10px;
+                                /* Efek rounded pada card */
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                /* Bayangan */
+                                transition: box-shadow 0.3s;
+                                /* Efek transisi saat hover */
+                            }
+
+                            .card:hover {
+                                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                                /* Meningkatkan bayangan saat hover */
+                            }
+
+                            .card-body {
+                                padding: 20px;
+                            }
+
+                            .card-title {
+                                font-size: 24px;
+                                /* Ukuran font yang lebih besar */
+                                color: #333;
+                                /* Warna teks */
+                                margin-bottom: 15px;
+                                /* Ruang bawah */
+                            }
+
+                            .ordered-list {
+                                list-style: none;
+                                /* Menghapus bullet points */
+                                padding: 0;
+                            }
+
+                            .card-text {
+                                font-size: 18px;
+                            }
+
+                            .btn-bayar {
+                                background-color: #007bff;
+                                /* Warna latar belakang tombol */
+                                color: #fff;
+                                /* Warna teks tombol */
+                                border: none;
+                                border-radius: 5px;
+                                padding: 10px 20px;
+                                cursor: pointer;
+                                display: inline-block;
+                                /* Mengatur tata letak tombol */
+                                /* Anda dapat menyesuaikan properti CSS lainnya sesuai kebutuhan */
+                            }
+
+
+                            .btn-bayar:hover {
+                                background-color: #0056b3;
+                                /* Warna latar belakang tombol saat hover */
+                            }
+                        </style>
+
+                        <div class="col-md-5">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Payment</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Tanggal</label>
+                                        <div class="col-sm-8">
+                                            <input id="birthday" class="form-control" placeholder="dd-mm-yyyy" type="date">
+                                        </div>
+                                    </div>
+
+                                    <ul class="ordered-list">
+
+                                    </ul>
+                                    Total Bayar : <h2 id="total"> 0</h2>
+
+                                    <div class="form-group row">
+                                        <label for="Pelanggan" class="col-sm-4 col-form-label">Pelanggan</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="nama" value="" name="nama">
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 text-center">
+                                            <button id="btn-bayar" type="submit" class="col-sm-12 btn btn-primary">Bayar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -439,9 +435,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    <br />
+        <br />
     </div>
 </section>
 @endsection
@@ -462,11 +456,10 @@
         const changeQty = (el, inc) => {
             // Ubah di array
             const id = $(el).closest('li')[0].dataset.id;
-            const index = orderedList.findIndex(list => list.menu_id == id);
+            const index = orderedList.findIndex(list => list.id == id);
             orderedList[index].qty += orderedList[index].qty == 1 && inc == -1 ? 0 : inc;
 
             // Ubah qty dan ubah subtotal
-
             const txt_subtotal = $(el).closest('li').find('.subtotal')[0];
             const txt_qty = $(el).closest('li').find('.qty-item')[0];
             txt_qty.value = parseInt(txt_qty.value) == 1 && inc == -1 ? 1 : parseInt(txt_qty.value) + inc;
@@ -495,74 +488,68 @@
 
         $('#btn-bayar').on('click', function() {
             $.ajax({
-                url: "{{ route('pemesanan.store') }}",
+                url: "{{ route('transaksi.store') }}",
                 method: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    "orderedList": orderedList,
-                    "total": sum()
+                    orderedList: orderedList,
+                    total: sum()
                 },
-                success: function(data) {
-                    if (data.status) {
-                        Swal.fire({
-                            title: data.message,
-                            showDenyButton: true,
-                            confirmButtonText: "Cetak Nota",
-                            denyButtonText: `OK`,
-                            showCloseButton: true
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.open("{{ url('nota') }}/" + data.notrans);
-                                // location.reload();
-                            } else if (result.isDenied) {
-                                location.reload();
-                            }
-                        });
-                    } else {
-                        console.log(data)
-                        Swal.fire('Pemesanan Gagal!', '', 'error');
-                    }
+                success: function(data) { // Perbaiki pengejaan di sini
+                    console.log(data);
+                    Swal.fire({
+                        title: data.message,
+                        showDenyButton: true,
+                        confirmButtonText: "Cetak Nota",
+                        denyButtonText: OK
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.open("{{ url('nota') }}/" + data.notrans)
+                            location.reload()
+                        } else if (result.isDenied) {
+                            location.reload()
+                        }
+                    });
                 },
                 error: function(request, status, error) {
-                    console.log(request.responseText);
-                    Swal.fire('Pemesanan Gagal!', '', 'error');
+                    console.log(request, request.error)
+                    Swal.fire('Pemesanan Gagal!')
                 }
             });
         });
 
         $(".menu-item li").click(function() {
-            // Mengambil data
-            const menu_clicked = $(this).text();
-            const data = $(this)[0].dataset;
-            const harga = parseFloat(data.harga);
-            const id = parseInt(data.id);
-            const image = data.image;
+                // Mengambil data
+                const menu_clicked = $(this).text();
+                const data = $(this)[0].dataset;
+                const harga = parseFloat(data.harga);
+                const id = parseInt(data.id);
 
-            if (orderedList.every(list => list.menu_id !== id)) {
-                let dataN = {
-                    'menu_id': id,
-                    'menu': menu_clicked,
-                    'harga': harga,
-                    'qty': 1
+                if (orderedList.every(list => list.id !== id)) {
+                    let dataN = {
+                        'id': id,
+                        'menu': menu_clicked,
+                        'harga': harga,
+                        'qty': 1
+                    };
+                    oorderedList.push(dataN);
+                    let listOrder = `<li data-id="${id}"><h4>${menu_clicked}</h4>`;
+                    listOrder += `Harga: Rp.${harga}`;
                 };
-                orderedList.push(dataN);
-                let listOrder = `<li data-id="${id}" data-image="${image} data-id="${id}"><div><h4>${menu_clicked}</h4><img style="width:14%;" src="{{ asset('images') }}/${image}"></div>`;
-                listOrder += `Sub Total : Rp. ${harga}`;
                 listOrder += `<button class='remove-item'>hapus</button>
-                           <button class="btn-dec"> - </button>`;
+                             <button class="btn-dec"> - </button>`;
                 listOrder += `<input class="qty-item"
                                   type="number"
                                   value="1"
-                                  style="width:35px"
+                                  style="width : 35px"
                                   readonly
                               />
-                              <button class="btn-inc">+</button><h2>
-                              <span class="subtotal">${harga * 1}</span>
-                          </li>`;
+                              <button class="btn-inc">+</button>
+                              <span class= "subtotal">Sub Total : ${harga *1 }</span>
+                          </li>`
                 $('.ordered-list').append(listOrder);
-            }
-            $('#total').html(sum());
-        });
+            },
+            $('#total').html(sum()));
     });
 </script>
 @endpush

@@ -37,11 +37,18 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFormpelanggan">
                                     Tambah pelanggan
                                 </button>
+                                <a href="/export/pelanggan" class="btn btn-success">
+                                    <i class=" fa fa-file-excel"></i> Export
+                                </a>
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
+                                    <i class=" fa fa-file-excel"></i> Import
+                                </button>
+                                <a href="{{ route('export-pelanggan-pdf') }}" class="btn btn-warning">
+                                    <i class="fa fa-file-pdf"></i> Export PDF
+                                </a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-
-
                         <div class="card-body">
                             @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -62,6 +69,7 @@
                             @endif
                             <div class="mt-3">
                                 @include('pelanggan.table')
+                                @include('pelanggan.import')
                             </div>
                             <!-- Button trigger modal -->
                         </div>
@@ -124,7 +132,7 @@ Toastr
         const nama = btn.data('nama')
         const email = btn.data('email')
         const no_telp = btn.data('no_telp')
-        const alamat= btn.data('alamat')
+        const alamat = btn.data('alamat')
         const id = btn.data('id')
         const modal = $(this)
         if (mode == 'edit') {

@@ -9,6 +9,7 @@ use App\Http\Requests\UpdatemenuRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\menuExport;
 use App\Imports\menuImport;
+use PDF;
 
 class MenuController extends Controller
 {
@@ -27,6 +28,7 @@ class MenuController extends Controller
       $date = date('Y-m-d');
       return Excel::download(new menuExport,$date.'_menu.xlsx');
     }
+
     public function importData(){
         Excel::import(new menuImport, request()->file('import'));
         return redirect('menu')->with('success', 'Import data paket berhasil!');
@@ -93,5 +95,11 @@ class MenuController extends Controller
     {
         Menu::find($id)->delete();
         return redirect('menu')->with('success','Data Menu berhasil dihapus!');
+    }
+    public function generatepdf()
+    {
+        $menu = menu::all();
+        $pdf = Pdf::loadView('menu.table', compact('menu'));
+        return $pdf->download('menu.pdf');
     }
 }

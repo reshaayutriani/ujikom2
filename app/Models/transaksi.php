@@ -9,7 +9,7 @@ class transaksi extends Model
 {
     use HasFactory;
     protected $table = 'transaksi';
-    protected $guarded = ['id'];
+    protected $guarded = [''];
 
     public function detailtransaksi(){
         return $this->hasMany(DetailTransaksi::class);

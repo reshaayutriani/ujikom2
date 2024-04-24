@@ -9,6 +9,8 @@ use App\Models\jenis;
 use App\Models\menu;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\stokExport;
+use App\Imports\stokImport;
+use PDF;
 use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
@@ -30,7 +32,11 @@ class StokController extends Controller
       $date = date('Y-m-d');
       return Excel::download(new stokExport, $date.'_stok.xlsx');
     }
-
+    public function importData()
+    {
+        Excel::import(new stokImport, request()->file('import'));
+        return redirect('stok')->with('success', 'Import data paket berhasil!');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -89,5 +95,11 @@ class StokController extends Controller
     {
         stok::find($id)->delete();
         return redirect('stok')->with('success', 'Data stok berhasil dihapus!');
+    }
+    public function generatepdf()
+    {
+        $stok = stok::all();
+        $pdf = Pdf::loadView('stok.table', compact('stok'));
+        return $pdf->download('stok.pdf');
     }
 }

@@ -10,9 +10,10 @@ class kategori extends Model
     use HasFactory;
 
     protected $table = 'kategori';
-    protected $fillable = ['nama_kategori'];
+    protected $fillable = ['nama_Kategori'];
 
-    function jenis(){
-        return $this->hasMany(jenis::class, 'kategori_id','id');
+    function jenis()
+    {
+        return $this->hasMany(jenis::class, 'kategori_id', 'id');
     }
 }

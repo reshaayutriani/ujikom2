@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pemesanan;
-use App\Http\Requests\StorepemesananRequest;
-use App\Http\Requests\UpdatepemesananRequest;
+use App\Models\Pemesanan;
+use App\Http\Requests\StorePemesananRequest;
+use App\Http\Requests\UpdatePemesananRequest;
 use App\Models\Jenis;
-use App\Models\Menu;
 use Exception;
 use Illuminate\Database\QueryException;
 use PDOException;
@@ -19,7 +18,7 @@ class pemesananController extends Controller
     public function index()
     {
         $data['pemesanan'] = pemesanan::orderBy('created_at', 'DESC')->get();
-        $jenis = Jenis::all();
+        $jenis = jenis::all();
         return view('pemesanan.index', compact('data', 'jenis'));
     }
 
@@ -34,11 +33,11 @@ class pemesananController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorepemesananRequest $request)
+    public function store(StorePemesananRequest $request)
     {
         $data['pemesanan'] = pemesanan::orderBy('created_at', 'DESC')->get();
-        $jenis = Jenis::all();
-        return response()->json(['status'=>true]);
+        $jenis = jenis::all();
+        return view('pemesanan.index', compact('data', 'jenis'));
     }
 
     /**
@@ -63,6 +62,7 @@ class pemesananController extends Controller
     public function update(UpdatepemesananRequest $request, pemesanan $pemesanan)
     {
         $pemesanan->update($request->all());
+
         return redirect('pemesanan')->with('success', 'Update data berhasil!');
     }
 

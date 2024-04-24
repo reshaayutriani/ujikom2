@@ -12,7 +12,7 @@
               @csrf
               <div id="method"></div>
               <div class="form-group row">
-                <label for="staticEmail" class="col-sm-4 col-form-label">Nama pelanggan</label>
+                <label for="staticEmail" class="col-sm-4 col-form-label">Nama </label>
                 <div class="col-sm-8">
                   <input type="text" class="form-control" id="nama" value="" name="nama">
                 </div>

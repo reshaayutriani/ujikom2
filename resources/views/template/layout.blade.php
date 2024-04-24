@@ -70,6 +70,10 @@
                                         <li><a href="stok">stok</a></li>
                                         <li><a href="produk">produk</a></li>
                                         <li><a href="about">Tentang</a></li>
+                                        <li><a href="meja">meja</a></li>
+                                        <li><a href="Kategori">Kategori</a></li>
+                                        <li><a href="AbsensiKerja">AbsensiKerja</a></li>
+                                        <li><a href="contact us">Contact us</a></li>
                                         <li><a href="logout">logout</a></li>
                                     </ul>
                                 </li>

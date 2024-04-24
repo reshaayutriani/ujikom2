@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use PDOException;
 use App\Models\jenis;
 use App\Http\Requests\StorejenisRequest;
@@ -9,6 +10,7 @@ use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\jenisExport;
 use App\Imports\jenisImport;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Database\QueryException;
 
 class JenisController extends Controller
@@ -18,23 +20,22 @@ class JenisController extends Controller
      */
     public function index()
     {
-        try{
-        $data['tittle'] = 'jenis';
-        $data['jenis'] = jenis::get();
-        return view('jenis.index')->with($data);
-        }
-
-        catch (QueryException | Exception | PDOException  $error){
-            $this->failResponse($error->getMessage(),$error->getCode());
+        try {
+            $data['tittle'] = 'jenis';
+            $data['jenis'] = jenis::get();
+            return view('jenis.index')->with($data);
+        } catch (QueryException | Exception | PDOException  $error) {
+            $this->failResponse($error->getMessage(), $error->getCode());
         }
     }
 
     public function exportData()
     {
-      $date = date('Y-m-d');
-      return Excel::download(new jenisExport,$date.'_jenis.xlsx');
+        $date = date('Y-m-d');
+        return Excel::download(new jenisExport, $date . '_jenis.xlsx');
     }
-    public function importData(){
+    public function importData()
+    {
         Excel::import(new JenisImport, request()->file('import'));
         return redirect('jenis')->with('success', 'Import data paket berhasil!');
     }
@@ -87,6 +88,12 @@ class JenisController extends Controller
     public function destroy($id)
     {
         Jenis::find($id)->delete();
-        return redirect('jenis')->with('success','Data jenis berhasil dihapus!');
+        return redirect('jenis')->with('success', 'Data jenis berhasil dihapus!');
+    }
+    public function generatepdf()
+    {
+        $jenis = jenis::all();
+        $pdf = FacadePdf::loadView('jenis.table', compact('jenis'));
+        return $pdf->download('jenis.pdf');
     }
 }

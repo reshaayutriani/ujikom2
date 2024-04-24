@@ -22,8 +22,10 @@ class menuExport implements FromCollection, WithHeadings, WithEvents
     {
       return[
         'No.',
+        'Jenis ID',
         'Nama menu',
         'harga',
+        'image',
         'Deskripsi',
       ];
     }
