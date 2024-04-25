@@ -41,8 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('export/AbsensiKerja', [AbsensiKerjaController::class, 'exportData'])->name('export-AbsensiKerja');
         Route::post('import/jenis', [jenisController::class, 'importData'])->name('import-jenis');
         Route::post('import/menu', [menuController::class, 'importData'])->name('import-menu');
-        Route::get('import/stok', [stokController::class, 'importData'])->name('import-stok');
-        Route::get('import/produk', [produkController::class, 'importData'])->name('import-produk');
+        Route::post('import/stok', [stokController::class, 'importData'])->name('import-stok');
+        Route::post('import/produk', [produkController::class, 'importData'])->name('import-produk');
         Route::post('import/meja', [mejaController::class, 'importData'])->name('import-meja');
         Route::post('import/kategori', [kategoriController::class, 'importData'])->name('import-kategori');
         Route::post('import/AbsensiKerja', [AbsensiKerjaController::class, 'importData'])->name('import-AbsensiKerja');
@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => ['cekUserLogin:2']], function () {
         Route::resource('/pelanggan', pelangganController::class);
-        Route::resource('/pemesanan', pemesananController::class);
+        Route::resource('/pemesanan', transaksiController::class);
         Route::resource('/transaksi', transaksiController::class);
         Route::get('nota/{notafaktur}', [transaksiController::class, 'faktur']);
         Route::get('export/pelanggan', [pelangganController::class, 'exportData'])->name('export-pelanggan');

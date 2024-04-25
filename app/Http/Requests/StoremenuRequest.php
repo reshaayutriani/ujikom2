@@ -25,14 +25,4 @@ class StoremenuRequest extends FormRequest
     
         ];
     }
-
-    public function messages()
-    {
-        return[
-            'nama_menu.required'=> 'data nama menu belum di isi',
-            'jenis.required'=> 'data jenis belum di isi',
-            'harga.required'=>'data harga belum di isi',
-            'deskripsi.required'=>'data deskripsibelum di isi',
-        ];
-    }
 }

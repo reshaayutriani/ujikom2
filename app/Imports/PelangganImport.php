@@ -22,4 +22,8 @@ class PelangganImport implements ToModel, WithHeadingRow
             'alamat' => $row['alamat'],
         ]);
     }
+    public function headingRow()
+    {
+        return 3;
+    }
 }

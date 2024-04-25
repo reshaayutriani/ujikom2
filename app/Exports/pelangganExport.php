@@ -23,8 +23,8 @@ class pelangganExport implements FromCollection, WithHeadings, WithEvents
       return[
         'No.',
         'nama',
-        'emil',
-        'no_telepon',
+        'email',
+        'no_telp',
         'alamat',
       ];
     }

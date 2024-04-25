@@ -38,7 +38,7 @@ class KategoriController extends Controller
     public function importData()
     {
         Excel::import(new kategoriImport, request()->file('import'));
-        return redirect('kategori')->with('success', 'Import data paket berhasil!');
+        return redirect('Kategori')->with('success', 'Import data paket berhasil!');
     }
 
     /**

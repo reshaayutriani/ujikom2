@@ -9,7 +9,7 @@ use App\Models\jenis;
 use App\Models\menu;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\stokExport;
-use App\Imports\stokImport;
+use App\Imports\stokimport;
 use PDF;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -29,12 +29,12 @@ class StokController extends Controller
 
     public function exportData()
     {
-      $date = date('Y-m-d');
-      return Excel::download(new stokExport, $date.'_stok.xlsx');
+        $date = date('Y-m-d');
+        return Excel::download(new stokExport, $date . '_stok.xlsx');
     }
     public function importData()
     {
-        Excel::import(new stokImport, request()->file('import'));
+        Excel::import(new stokimport, request()->file('import'));
         return redirect('stok')->with('success', 'Import data paket berhasil!');
     }
     /**

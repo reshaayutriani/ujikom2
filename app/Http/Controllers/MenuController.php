@@ -9,6 +9,8 @@ use App\Http\Requests\UpdatemenuRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\menuExport;
 use App\Imports\menuImport;
+use Dompdf\Dompdf;
+use illuminate\Support\Facades\View;
 use PDF;
 
 class MenuController extends Controller
@@ -82,9 +84,18 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMenuRequest $request, string $id)
+    public function update(StoreMenuRequest $request, string $id)
     {
-        $menu = Menu::find($id)->update($request->all());
+        $menu = Menu::find($id);
+        $request->validate([
+            'image' => 'required|image|mimes:png, jpg, jpeg, svg|max:2048',
+        ]);
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('image'), $imageName);
+        $data = $request->all();
+        $data['image'] = $imageName;
+
+        $menu->update($data);
         return redirect('menu')->with('success', 'Update data berhasil');
     }
 
@@ -98,8 +109,28 @@ class MenuController extends Controller
     }
     public function generatepdf()
     {
+        // Get data
         $menu = menu::all();
-        $pdf = Pdf::loadView('menu.table', compact('menu'));
-        return $pdf->download('menu.pdf');
+
+        // Loop through menu items and encode images to base64
+        foreach ($menu as $p) {
+            $imagePath = public_path('images/' . $p->image);
+            if (file_exists($imagePath)) {
+                $imageData = base64_encode(file_get_contents($imagePath));
+                $p->imageData = $imageData;
+            } else {
+                // Handle the case where the image file doesn't exist
+                $p->imageData = null; // Or any other appropriate handling
+            }
+        }
+
+        // Generate PDF
+        $dompdf = new Dompdf();
+        $html = View::make('menu.table', compact('menu'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        // Return the PDF as a download
+        return $dompdf->stream('menu.pdf');
     }
 }

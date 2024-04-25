@@ -6,6 +6,7 @@ use App\Models\transaksi;
 use App\Http\Requests\StoretransaksiRequest;
 use App\Http\Requests\UpdatetransaksiRequest;
 use App\Models\detailTransaksi;
+use App\Models\jenis;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $data['pemesanan'] = transaksi::orderBy('created_at', 'DESC')->get();
+        $jenis = jenis::all();
+        return view('pemesanan.index', compact('data', 'jenis'));
     }
 
     /**
@@ -36,7 +40,6 @@ class TransaksiController extends Controller
     {
         try {
             DB::beginTransaction();
-
             $last_id = transaksi::where('tanggal', date('Y-m-d'))->orderBy('created_at', 'desc')->select('id')->first();
 
             $notrans = $last_id == null ? date('Ymd') . '0001' : date('Ymd') . sprintf('%04d', substr($last_id->id, 8, 4) + 1);
@@ -54,9 +57,10 @@ class TransaksiController extends Controller
                 //dd($requuest);
                 $insertDetailTransaksi = detailTransaksi::create([
                     'transaksi_id' => $notrans,
-                    'menu_id' => $detail['id'],
+                    'menu_id' => $detail['menu_id'],
                     'jumlah' => $detail['qty'],
-                    'subtotal' => $detail['harga'] * $detail['qty']
+                    'subtotal' => $detail['harga'] * $detail['qty'],
+                    'harga' => $detail['harga']
                 ]);
             }
             DB::commit();

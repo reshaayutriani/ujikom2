@@ -33,20 +33,7 @@
 
                     <!-- Daftar orderan yang sedang diproses -->
                     <div class="row">
-                        {{-- <div class="col-md-8">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2>Daftar Menu</h2>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
-                                        <!-- Tabel daftar orderan -->
-
-                                    </div>
-                                </div>
-                            </div> --}}
-
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Daftar Menu</h2>
@@ -60,36 +47,42 @@
                                             <h3>{{ $j->nama_jenis }}</h3>
                                             <ul class="menu-item" style="cursor: pointer;">
                                                 @foreach ($j->menu as $menu)
-                                                <li data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}">
-                                                    <img width="50px" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
-
+                                                <li data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}" data-image="{{ $menu->image }}">
+                                                    <img width="100px" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
                                                     <div>
-                                                        Nama: {{ $menu->nama_menu }}<br />
-
-                                                        Deskripsi: {{ $menu->deskripsi }}<br />
+                                                        Nama: {{ $menu->nama_menu }}
+                                                        <br>
+                                                        Deskripsi : {{ $menu->deskripsi }}
                                                     </div>
+                                                    <!-- <div>Nama: {{ $menu->nama_menu }}
+                                <br>Jumlah: @if($menu->stok)
+                                {{ $menu->stok->jumlah }}
+                                @endif
+                            </div> 
 
+                            <div style="font-family: calibri;">
+                                Nama : {{ $menu->nama_menu }} <br>
+                                Deskripsi : {{ $menu->deskripsi }}
+                            </div> -->
                                                 </li>
                                                 @endforeach
                                             </ul>
                                         </li>
                                         @endforeach
                                     </ul>
-
-                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        {{-- <style>
-                                .menu-container li h3 {
-                                    text-transform: uppercase;
-                                    font-weight: bold;
-                                    font-size: 18px;
-                                    background-color: aliceblue;
-                                    padding: 5px 15px;
-                                    /* 10px; */
-                                }
-                            </style> --}}
+                        <style>
+                            .menu-container li h3 {
+                                text-transform: uppercase;
+                                font-weight: bold;
+                                font-size: 18px;
+                                background-color: aliceblue;
+                                padding: 5px 15px;
+                                /* 10px; */
+                            }
+                        </style>
 
                         <style>
                             .ordered-item {
@@ -186,6 +179,7 @@
                             /* Style untuk item menu */
                             .menu-item li {
                                 cursor: pointer;
+                                /* text-align: center; */
                                 margin-bottom: 10px;
                                 padding: 10px;
                                 border: 1px solid #ccc;
@@ -200,7 +194,7 @@
                             /* Style untuk tombol hapus dan tombol kuantitas */
                             .btn-dec,
                             .btn-inc {
-                                background-color: #1c5c99;
+                                background-color: #2915e3;
                                 color: #fff;
                                 border: none;
                                 border-radius: 3px;
@@ -211,7 +205,7 @@
                             }
 
                             .remove-item {
-                                background-color: #6621b0;
+                                background-color: #343bc2;
                                 color: #fff;
                                 border: none;
                                 border-radius: 3px;
@@ -223,14 +217,14 @@
 
                             .btn-dec:hover,
                             .btn-inc:hover {
-                                background-color: #c82333;
+                                background-color: #30df0d;
                             }
 
                             /* Style untuk subtotal */
                             .subtotal {
                                 font-size: 16px;
                                 font-weight: bold;
-                                color: #007bff;
+                                color: #7291b3;
                                 margin-left: 10px;
                             }
 
@@ -263,7 +257,7 @@
                             }
 
                             .container {
-                                border: 2px solid rgb(255, 255, 255);
+                                /* border: 2px solid pink; */
                                 border-radius: 10px;
                                 /* Menambahkan sedikit efek rounded pada border */
                                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -271,7 +265,7 @@
                                 display: grid;
                                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                                 gap: 30px;
-
+                                /* padding: 20px; */
                                 transition: box-shadow 0.3s;
                                 /* Efek transisi untuk bayangan */
                             }
@@ -294,15 +288,13 @@
 
                             .menu-container li h3 {
                                 text-transform: uppercase;
-
                                 font-weight: bold;
                                 font-size: 20px;
-                                height: 35px;
                                 /* Menyesuaikan ukuran font */
                                 background-color: aliceblue;
                                 padding: 10px 20px;
                                 /* Menyesuaikan padding */
-                                margin: 7px 0;
+                                margin: 5px 0;
                                 /* Menambahkan margin atas dan bawah */
                                 border-radius: 5px;
                                 /* Memberikan sedikit efek rounded */
@@ -397,31 +389,31 @@
                             }
                         </style>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Payment</h2>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="form-group row">
-                                        <label class="col-sm-4 col-form-label">Tanggal</label>
-                                        <div class="col-sm-8">
-                                            <input id="birthday" class="form-control" placeholder="dd-mm-yyyy" type="date">
-                                        </div>
-                                    </div>
+                                    <!-- <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Tanggal</label>
+                                            <div class="col-sm-8">
+                                                <input id="birthday" class="form-control" placeholder="dd-mm-yyyy" type="date">
+                                            </div>
+                                        </div> -->
 
                                     <ul class="ordered-list">
 
                                     </ul>
                                     Total Bayar : <h2 id="total"> 0</h2>
 
-                                    <div class="form-group row">
-                                        <label for="Pelanggan" class="col-sm-4 col-form-label">Pelanggan</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nama" value="" name="nama">
-                                        </div>
-                                    </div>
+                                    <!-- <div class="form-group row">
+                                            <label for="Pelanggan" class="col-sm-4 col-form-label">Pelanggan</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="nama" value="" name="nama">
+                                            </div>
+                                        </div> -->
                                     <br />
                                     <div class="form-group row">
                                         <div class="col-sm-12 text-center">
@@ -456,10 +448,11 @@
         const changeQty = (el, inc) => {
             // Ubah di array
             const id = $(el).closest('li')[0].dataset.id;
-            const index = orderedList.findIndex(list => list.id == id);
+            const index = orderedList.findIndex(list => list.menu_id == id);
             orderedList[index].qty += orderedList[index].qty == 1 && inc == -1 ? 0 : inc;
 
             // Ubah qty dan ubah subtotal
+
             const txt_subtotal = $(el).closest('li').find('.subtotal')[0];
             const txt_qty = $(el).closest('li').find('.qty-item')[0];
             txt_qty.value = parseInt(txt_qty.value) == 1 && inc == -1 ? 1 : parseInt(txt_qty.value) + inc;
@@ -488,68 +481,72 @@
 
         $('#btn-bayar').on('click', function() {
             $.ajax({
-                url: "{{ route('transaksi.store') }}",
+                url: "{{ route('pemesanan.store') }}",
                 method: "POST",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    orderedList: orderedList,
-                    total: sum()
+                    "orderedList": orderedList,
+                    "total": sum()
                 },
-                success: function(data) { // Perbaiki pengejaan di sini
-                    console.log(data);
-                    Swal.fire({
-                        title: data.message,
-                        showDenyButton: true,
-                        confirmButtonText: "Cetak Nota",
-                        denyButtonText: OK
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.open("{{ url('nota') }}/" + data.notrans)
-                            location.reload()
-                        } else if (result.isDenied) {
-                            location.reload()
-                        }
-                    });
+                success: function(data) {
+                    console.log(data)
+                    if (data.status) {
+                        Swal.fire({
+                            title: data.message,
+                            showDenyButton: true,
+                            confirmButtonText: "Cetak Nota",
+                            denyButtonText: 'OK',
+                            showCloseButton: true
+                        }).then((result) => {
+                            console.log(data)
+                            if (result.isConfirmed) {
+                                window.open("{{ url('nota') }}/" + data.notrans);
+                                // location.reload();
+                            } else if (result.isDenied) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        console.log(data)
+                        Swal.fire('Pemesanan Gagal!', '', 'error');
+                    }
                 },
                 error: function(request, status, error) {
-                    console.log(request, request.error)
-                    Swal.fire('Pemesanan Gagal!')
+                    alert('nte sukses')
+                    console.log(request.responseText);
+                    Swal.fire('Pemesanan Gagal!', '', 'error');
                 }
             });
         });
 
         $(".menu-item li").click(function() {
-                // Mengambil data
-                const menu_clicked = $(this).text();
-                const data = $(this)[0].dataset;
-                const harga = parseFloat(data.harga);
-                const id = parseInt(data.id);
+            console.log(this)
+            // Mengambil data
+            const menu_clicked = $(this).text();
+            const data = $(this)[0].dataset;
+            const harga = parseFloat(data.harga);
+            const id = parseInt(data.id);
+            const image = data.image;
 
-                if (orderedList.every(list => list.id !== id)) {
-                    let dataN = {
-                        'id': id,
-                        'menu': menu_clicked,
-                        'harga': harga,
-                        'qty': 1
-                    };
-                    oorderedList.push(dataN);
-                    let listOrder = `<li data-id="${id}"><h4>${menu_clicked}</h4>`;
-                    listOrder += `Harga: Rp.${harga}`;
+            if (orderedList.every(list => list.menu_id !== id)) {
+                let dataN = {
+                    'menu_id': id,
+                    'menu': menu_clicked,
+                    'harga': harga,
+                    'qty': 1
                 };
-                listOrder += `<button class='remove-item'>hapus</button>
-                             <button class="btn-dec"> - </button>`;
-                listOrder += `<input class="qty-item"
-                                  type="number"
-                                  value="1"
-                                  style="width : 35px"
-                                  readonly
-                              />
-                              <button class="btn-inc">+</button>
-                              <span class= "subtotal">Sub Total : ${harga *1 }</span>
+                orderedList.push(dataN);
+                let listOrder = `<li data-id="${id}" data-image="${image}"><div><h4>${menu_clicked} </h4><img style="width:14%;" src="{{ asset('images') }}/${image}"></img></div>`;
+                listOrder += `SubTotal: Rp.${harga}`;
+                listOrder += `<button class='remove-item'>hapus</button><button class="btn-dec"> - </button>`;
+                listOrder += `<input class="qty-item" type="number" value="1" style="width:35px" readonly ></input>
+                              <button class="btn-inc">+</button><h2>
+                              <span class="subtotal">${harga * 1}</span></h2>
                           </li>`
                 $('.ordered-list').append(listOrder);
-            },
-            $('#total').html(sum()));
+            }
+            $('#total').html(sum());
+        });
     });
 </script>
 @endpush

@@ -22,7 +22,7 @@ class KategoriExport implements FromCollection, WithHeadings, WithEvents
     {
       return[
         'No.',
-        'Kategori',
+        'kategori',
       ];
     }
     public function registerEvents(): array

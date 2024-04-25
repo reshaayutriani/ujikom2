@@ -8,12 +8,12 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class jenisImport implements ToModel, WithHeadingRow
+class stokimport implements ToModel, WithHeadingRow
 {
     public function model(array $rows)
     {
         return new stok([
-            'menu' => $rows['menu'],
+            'menu_id' => $rows['nama_menu'],
             'jumlah' => $rows['jumlah'],
         ]);
     }
