@@ -88,7 +88,7 @@ class MenuController extends Controller
     {
         $menu = Menu::find($id);
         $request->validate([
-            'image' => 'required|image|mimes:png, jpg, jpeg, svg|max:2048',
+            'image' => 'required|images|mimes:png,jpg,jpeg,svg|max:2048',
         ]);
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('image'), $imageName);

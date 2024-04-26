@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\detailtransaksi;
 use App\Http\Requests\StoredetailtransaksiRequest;
 use App\Http\Requests\UpdatedetailtransaksiRequest;
+use Exception;
+use Illuminate\Database\QueryException;
+use PDOException;
 
 class DetailtransaksiController extends Controller
 {
@@ -13,7 +16,13 @@ class DetailtransaksiController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $data['detail_transaksi'] = Detailtransaksi::get();
+            return view('laporan.index')->with($data);
+        }
+        catch (QueryException | Exception | PDOException $error){
+            $this->fsilrespon($error->getMessage(),$error->getCode());
+        }
     }
 
     /**

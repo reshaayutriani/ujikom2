@@ -11,8 +11,9 @@
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
     <title>caffe coffe</title>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminlte3')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <script src="{{ asset('template') }}/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('template') }}/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <!-- Bootstrap -->
     <link href="{{ asset ( 'template') }}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -68,12 +69,12 @@
                                         <li><a href="jenis">jenis</a></li>
                                         <li><a href="menu">menu</a></li>
                                         <li><a href="stok">stok</a></li>
-                                        <li><a href="produk">produk</a></li>
-                                        <li><a href="about">Tentang</a></li>
+                                        <!-- <li><a href="produk">produk</a></li> -->
+                                        <!-- <li><a href="about">Tentang</a></li> -->
                                         <li><a href="meja">meja</a></li>
                                         <li><a href="Kategori">Kategori</a></li>
-                                        <li><a href="AbsensiKerja">AbsensiKerja</a></li>
-                                        <li><a href="contact us">Contact us</a></li>
+                                        <!-- <li><a href="AbsensiKerja">AbsensiKerja</a></li> -->
+                                        <!-- <li><a href="contact us">Contact us</a></li> -->
                                         <li><a href="logout">logout</a></li>
                                     </ul>
                                 </li>

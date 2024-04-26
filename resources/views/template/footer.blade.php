@@ -52,7 +52,10 @@
 <script src="{{ asset('sweetalert') }}/dist/sweetalert2.min.js"></script>
 <script src="{{ asset('template') }}/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('template') }}/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('adminlte') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 
+    <script src="{{ asset('adminlte3') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('adminlte3') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 @stack('script')
 
 </body>

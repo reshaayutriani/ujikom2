@@ -14,7 +14,7 @@
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-4 col-form-label">Nama Kategori</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="nama_Kategori" value="" name="nama_Kategori">
+                            <input type="text" class="form-control" id="Kategori" value="" name="Kategori">
                         </div>
                     </div>
                     <div class="modal-footer">

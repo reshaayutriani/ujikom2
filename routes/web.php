@@ -13,6 +13,7 @@ use App\Http\Controllers\mejaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AbsensiKerjaController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\UserController;
 
@@ -70,7 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['middleware' => ['cekUserLogin:3']], function () {
-        Route::resource('/kategori', kategoroController::class);
+        Route::resource('/owner', DetailTransaksiController::class);
     });
 
     Route::get('about', [HomeController::class, 'about']);

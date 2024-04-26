@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama_Kategori</th>
+                    <th>Kategori</th>
                     <th>Tools</th>
                 </tr>
             </thead>
@@ -12,7 +12,7 @@
                 @foreach ($Kategori as $p)
                 <tr>
                     <td>{{ $i = !isset ($i) ? ($i = 1) : ++$i }}</td>
-                    <td>{{ $p->nama_Kategori }}</td>
+                    <td>{{ $p->Kategori }}</td>
 
                     <td>
                         <button class="btn text-warning" data-toggle="modal" data-target="#modalFormKategori" data-mode="edit" data-id="{{ $p->id }}" data-nama_Kategori="{{ $p->nama_Kategori }}">

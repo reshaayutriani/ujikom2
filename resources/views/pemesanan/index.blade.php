@@ -48,11 +48,13 @@
                                             <ul class="menu-item" style="cursor: pointer;">
                                                 @foreach ($j->menu as $menu)
                                                 <li data-harga="{{ $menu->harga }}" data-id="{{ $menu->id }}" data-image="{{ $menu->image }}">
-                                                    <img width="100px" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
+                                                    <img width="50px" src="{{ asset('images') }}/{{ $menu->image }}" alt="">
                                                     <div>
                                                         Nama: {{ $menu->nama_menu }}
                                                         <br>
                                                         Deskripsi : {{ $menu->deskripsi }}
+                                                        <br>
+                                                        stok: {{$menu->stok?$menu->stok->jumlah:0}}
                                                     </div>
                                                     <!-- <div>Nama: {{ $menu->nama_menu }}
                                 <br>Jumlah: @if($menu->stok)
