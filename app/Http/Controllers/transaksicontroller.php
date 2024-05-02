@@ -7,6 +7,7 @@ use App\Http\Requests\StoretransaksiRequest;
 use App\Http\Requests\UpdatetransaksiRequest;
 use App\Models\detailTransaksi;
 use App\Models\jenis;
+use App\Models\menu;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -55,6 +56,9 @@ class TransaksiController extends Controller
             // input detail transaksi
             foreach ($request->orderedList as $detail) {
                 //dd($requuest);
+                $menu = menu::find($detail['menu_id']);
+                $menu->stok->jumlah = $menu->stok->jumlah - $detail['qty'];
+                $menu->stok->save();
                 $insertDetailTransaksi = detailTransaksi::create([
                     'transaksi_id' => $notrans,
                     'menu_id' => $detail['menu_id'],

@@ -17,19 +17,19 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Administrator',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('a'),
+                'password' => bcrypt('reshaayu1509'),
                 'level' => 1
             ],
             [
                 'name' => 'kasir1',
                 'email' => 'kasir@gmail.com',
-                'password' => bcrypt('a'),
+                'password' => bcrypt('ayuresha0915'),
                 'level' => 2
             ],
             [
                 'name' => 'owner',
                 'email' => 'owner@gmail.com',
-                'password' => bcrypt('a'),
+                'password' => bcrypt('ayutriani0515'),
                 'level' => 3
             ]
         ];

@@ -9,8 +9,8 @@ use App\Http\Requests\UpdatemenuRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\menuExport;
 use App\Imports\menuImport;
+use Illuminate\Support\Facades\View;
 use Dompdf\Dompdf;
-use illuminate\Support\Facades\View;
 use PDF;
 
 class MenuController extends Controller
@@ -27,11 +27,12 @@ class MenuController extends Controller
 
     public function exportData()
     {
-      $date = date('Y-m-d');
-      return Excel::download(new menuExport,$date.'_menu.xlsx');
+        $date = date('Y-m-d');
+        return Excel::download(new menuExport, $date . '_menu.xlsx');
     }
 
-    public function importData(){
+    public function importData()
+    {
         Excel::import(new menuImport, request()->file('import'));
         return redirect('menu')->with('success', 'Import data paket berhasil!');
     }
@@ -58,7 +59,7 @@ class MenuController extends Controller
         $request->image->move(public_path('images'), $imageName);
         $data = $request->all();
         $data['image'] = $imageName;
-        
+
         menu::create($data);
 
         return redirect('menu')->with('success', 'Data menu berhasil di tambahkan!');
@@ -88,10 +89,10 @@ class MenuController extends Controller
     {
         $menu = Menu::find($id);
         $request->validate([
-            'image' => 'required|images|mimes:png,jpg,jpeg,svg|max:2048',
+            'image' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
         ]);
         $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('image'), $imageName);
+        $request->image->move(public_path('images'), $imageName);
         $data = $request->all();
         $data['image'] = $imageName;
 
@@ -105,9 +106,9 @@ class MenuController extends Controller
     public function destroy($id)
     {
         Menu::find($id)->delete();
-        return redirect('menu')->with('success','Data Menu berhasil dihapus!');
+        return redirect('menu')->with('success', 'Data Menu berhasil dihapus!');
     }
-    public function generatepdf()
+    public function pdf()
     {
         // Get data
         $menu = menu::all();
@@ -125,12 +126,18 @@ class MenuController extends Controller
         }
 
         // Generate PDF
-        $dompdf = new Dompdf();
-        $html = View::make('menu.table', compact('menu'))->render();
-        $dompdf->loadHtml($html);
-        $dompdf->render();
+    $pdf = new Dompdf();
 
-        // Return the PDF as a download
-        return $dompdf->stream('menu.pdf');
-    }
+    // Render view ke dalam HTML
+    $html = view('menu.table', compact('menu'))->render();
+
+    // Load HTML ke dalam Dompdf
+    $pdf->loadHtml($html);
+
+    // Render PDF
+    $pdf->render();
+
+    // Mengembalikan PDF sebagai unduhan
+    return $pdf->stream('menu.pdf');
+}
 }

@@ -89,6 +89,8 @@
 
 @push('script')
 <script>
+    $('#tbl-meja').DataTable({
+    });
     // $('#tbl-jenis').DataTable()
 
     $('.alert-success').fadeTo(2000, 500).slideUp(500, function() {

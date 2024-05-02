@@ -95,40 +95,45 @@ tr:hover {
 }
 </style>
 <body>
-    <h2>C A F E</h2>
-    <h5>Jl. Siliwangi N0. 61 Cianjur</h5>
-    <hr>
-    @if($transaksi)
-        <h5>No. Faktur : {{ $transaksi->id }}</h5>
-        <h5>{{ $transaksi->tanggal }}</h5>
+    <div class="container-box">
+        <h2>cafffe</h2>
+        <h3>cafffe coffe</h3>
+        <hr>
 
-        <table border="1"> <!-- Perbaiki border menjadi 1 -->
+        @if(isset($transaksi))
+            <h3>NO. FAKTUR : {{ $transaksi->id }}</h3>
+            <h3>Tanggal    : {{ $transaksi->tanggal }}</h3>
+
+            <table border="0">
             <thead>
                 <tr>
-                    <th>Qty</th> <!-- Mengganti <td> menjadi <th> untuk header -->
-                    <th>Item</th>
-                    <th>Harga</th>
-                    <th>Total</th>
+                    <td>Qty</td>
+                    <td>Item</td>
+                    <td>Harga</td>
+                    <td>Subtotal</td>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($transaksi->detailtransaksi as $item)
-                <tr>
-                    <td>{{ $item->jumlah }}</td>
-                    <td>{{ $item->menu->nama_menu }}</td>
-                    <td>{{ number_format($item->menu->harga,0,',','.') }}</td>
-                    <td>{{ number_format($item->subtotal,0,',','.') }}</td>
-                </tr>
+                @foreach($transaksi->detailTransaksi as $item)
+                    <tr>
+                        <td>{{ $item->jumlah }}</td>
+                        <td>{{ $item->menu->nama_menu }}</td>
+                        <td>{{ number_format($item->menu->harga, 0, "," , ".") }}</td>
+                        <td>{{ number_format($item->subtotal, 0, "," , ".") }}</td>
+                    </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">Total</td>
-                    <td>{{ number_format($transaksi->total_harga,0,',','.')}}</td>
+                    <td colspan="1">Total</td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="4">{{ number_format($transaksi->total_harga,0,",",".") }}</td>
                 </tr>
             </tfoot>
         </table>
-    @else
-        <p>Transaksi tidak ditemukan.</p>
-    @endif
+        @else
+            <p>No transaction found.</p>
+        @endif
+    </div>
 </body>

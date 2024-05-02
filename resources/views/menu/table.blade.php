@@ -23,7 +23,7 @@
                     <td>{{ $p->deskripsi }}</td>
                     <td>
                         <button class=" btn text-warning" data-toggle="modal" data-target="#modalFormmenu" data-mode="edit" data-id="{{ $p->id }}" data-nama_menu="{{ $p->nama_menu }}" data-jenis_id="{{ $p->jenis_id }}" data-harga="{{ $p->harga}}" data-image="{{ $p->image }}" data-deskripsi="{{ $p->deskripsi }}">
-                        <i class="fas fa-edit"></i>
+                            <i class="fas fa-edit"></i>
                         </button>
                         <form method="post" action="{{ route('menu.destroy', $p->id) }}" style="display: inline">
                             @csrf

@@ -66,6 +66,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Admin <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                    <li><a href="grafik">Dashboard</a></li>
                                         <li><a href="jenis">jenis</a></li>
                                         <li><a href="menu">menu</a></li>
                                         <li><a href="stok">stok</a></li>

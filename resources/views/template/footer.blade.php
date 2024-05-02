@@ -56,8 +56,9 @@
 
     <script src="{{ asset('adminlte3') }}/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('adminlte3') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('js') }}/canvasjs.min.js"></script>
 @stack('script')
 
 </body>
 
-</html>
+

@@ -7,6 +7,8 @@ use App\Http\Requests\StoredetailtransaksiRequest;
 use App\Http\Requests\UpdatedetailtransaksiRequest;
 use Exception;
 use Illuminate\Database\QueryException;
+use App\Exports\laporanExport;
+use Maatwebsite\Excel\Facades\Excel;
 use PDOException;
 
 class DetailtransaksiController extends Controller
@@ -24,7 +26,11 @@ class DetailtransaksiController extends Controller
             $this->fsilrespon($error->getMessage(),$error->getCode());
         }
     }
-
+    public function exportData()
+    {
+        $date = date('Y-m-d');
+        return Excel::download(new LaporanExport, $date . '_laporan.xlsx');
+    }
     /**
      * Show the form for creating a new resource.
      */

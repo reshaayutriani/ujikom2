@@ -93,6 +93,8 @@ Toastr
 <script src="AdminLTE-3.2.0/plugins/toastr/toastr.min.js"></script> -->
 
 <script>
+    $('#tbl-pelanggan').DataTable({
+    });
     console.log('pelanggan')
     //$('#tbl-pelanggan').DataTable()//
 

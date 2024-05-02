@@ -4,11 +4,10 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Transaksi Id</th>
-                    <th>Menu</th>
-                    <th>jumlah</th>
-                    <th>subtotal</th>
-                    <th>Tools</th>
+                    <th>Transaksi ID</th>
+                    <th>Menu ID</th>
+                    <th>Jumlah</th>
+                    <th>Subtotal</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,21 +15,9 @@
                 <tr>
                     <td>{{ $i = !isset ($i) ? ($i = 1) : ++$i }}</td>
                     <td>{{ $p->transaksi_id }}</td>
-                    <td>{{ $p->menu_id }}</td>
+                    <td>{{ $p->menu->nama_menu }}</td>
                     <td>{{ $p->jumlah }}</td>
-                    <td>{{ $p->subtotal}}</td>
-                    <td>
-                        <!-- <button class="btn text-warning" data-toggle="modal" data-target="#modalFormKategori" data-mode="edit" data-id="{{ $p->id }}" data-nama_Kategori="{{ $p->nama_Kategori }}">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <form method="post" action="{{ route('Kategori.destroy', $p->id) }}" style="display: inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn text-danger delete-data" data-nama_kategori="{{$p->nama_Kategori}}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </td> -->
+                    <td>{{ $p->subtotal }}</td>
                 </tr>
                 @endforeach
             </tbody>

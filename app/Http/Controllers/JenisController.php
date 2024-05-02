@@ -10,6 +10,7 @@ use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\jenisExport;
 use App\Imports\jenisImport;
+use PDF;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Database\QueryException;
 
@@ -90,10 +91,14 @@ class JenisController extends Controller
         Jenis::find($id)->delete();
         return redirect('jenis')->with('success', 'Data jenis berhasil dihapus!');
     }
-    public function generatepdf()
+    public function pdf()
     {
-        $jenis = jenis::all();
-        $pdf = FacadePdf::loadView('jenis.table', compact('jenis'));
-        return $pdf->download('jenis.pdf');
-    }
+        // Data untuk ditampilkan dalam PDF
+        $data = jenis::all(); 
+          
+        // Render view ke HTML
+        $pdf = PDF::loadView('jenis/jenis-pdf', ['jenis'=>$data]); 
+        $date = date('Y-m-d');
+        return $pdf->download($date.'-data-jenis.pdf');
+}
 }
