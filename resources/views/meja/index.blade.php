@@ -42,8 +42,8 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#formImport">
                                     <i class=" fa fa-file-excel"></i> Import
                                 </button>
-                                <a href="{{ route('export-meja-pdf') }}" class= "btn btn-danger"> 
-                                <i class="fa fa-file-pdf"></i> Export PDF
+                                <a href="{{ route('export-meja-pdf') }}" class="btn btn-danger">
+                                    <i class="fa fa-file-pdf"></i> Export PDF
                                 </a>
                             </div>
                             <div class="clearfix"></div>
@@ -51,14 +51,14 @@
 
 
                         <div class="card-body">
-                            @if (session('success'))
+                            @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                             @endif
 
-                            @if ($errors->any())
+                            @if($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -70,28 +70,27 @@
                             </div>
                             @endif
                             <div class="mt-3">
-                            @include('meja.modal')
+                                @include('meja.modal')
                             </div>
                             <!-- Button trigger modal -->
                         </div>
                     </div>
                     @include('meja.table')
-                                @include('meja.import')
+                    @include('meja.import')
                     <div class="clearfix"></div>
                 </div>
             </div>
         </div>
         <br />
     </div>
-    
+
 </section>
 @endsection
 
 @push('script')
 <script>
-    $('#tbl-meja').DataTable({
-    });
-    // $('#tbl-jenis').DataTable()
+    $('#tbl-meja').DataTable({});
+    // $('#tbl-meja').DataTable()
 
     $('.alert-success').fadeTo(2000, 500).slideUp(500, function() {
         $('.alert-success').slideUp(500)
@@ -120,7 +119,8 @@
         })
     })
 
-    $('#modalFormMeja').on('show.bs.modal', function(e) {
+    $('#modalFormmeja').on('show.bs.modal', function(e) {
+        console.log(e)
         const btn = $(e.relatedTarget)
         const mode = btn.data('mode')
         const nomor_meja = btn.data('nomor_meja')

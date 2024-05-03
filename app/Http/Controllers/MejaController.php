@@ -75,7 +75,7 @@ class MejaController extends Controller
     public function update(UpdatemejaRequest $request, string $id)
     {
         $meja = meja::find($id)->update($request->all());
-        return redirect('meja')->with('succes','update data berhasil');
+        return redirect('meja')->with('success','update data berhasil');
     }
 
     /**
@@ -84,7 +84,7 @@ class MejaController extends Controller
     public function destroy($id)
     {
         meja::find($id)->delete();
-        return redirect('meja')->with('success', 'Data jenis berhasil dihapus!');
+        return redirect('meja')->with('success', 'Data meja berhasil dihapus!');
     }
     public function generatepdf()
     {

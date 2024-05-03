@@ -17,7 +17,7 @@ class kategoriimport implements ToModel, WithHeadingRow
     {
 
         return new kategori([
-            'nama_Kategori' => $row['kategori'],
+            'Kategori' => $row['kategori'],
         ]);
     }
 
